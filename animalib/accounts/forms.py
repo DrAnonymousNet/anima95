@@ -12,11 +12,11 @@ class PwdResetConfirmForm(SetPasswordForm):
         label='Repeat password', widget=forms.PasswordInput(
             attrs={'placeholder': 'Confirm New Password', 'id': 'psw-confirm-new', 'name': 'psw-confirm-new'}))
 
-    # def clean_password2(self):  # to ensure the two passwords are equal
-    #     cd = self.cleaned_data
-    #     if cd['new_password1'] != cd['new_password2']:
-    #         raise forms.ValidationError('Passwords do not match.')
-    #     return cd['new_password2']
+    def clean_password2(self):  # to ensure the two passwords are equal
+        cd = self.cleaned_data
+        if cd['new_password1'] != cd['new_password2']:
+            raise forms.ValidationError('Passwords do not match.')
+        return cd['new_password2']
 
 
 class UserLoginForm(AuthenticationForm):
@@ -39,19 +39,19 @@ class PwdChangeForm(PasswordChangeForm):
     new_password2 = forms.CharField(widget=forms.PasswordInput(
         attrs={'placeholder': 'Confirm New Password', 'id': 'psw-confirm-new', 'name': 'psw-confirm-new'}))
 
-    # def clean_password1(self):
-    #     old_password = self.cleaned_data['password']
-    #     test = User.objects.filter(old_password=old_password)
-    #     if not test:
-    #         raise forms.ValidationError(
-    #             'Password is not recognized')
-    #     return old_password
+    def clean_password1(self):
+        old_password = self.cleaned_data['password']
+        test = User.objects.filter(old_password=old_password)
+        if not test:
+            raise forms.ValidationError(
+                'Password is not recognized')
+        return old_password
 
-    # def clean_password2(self):  # to ensure the two passwords are equal
-    #     cd = self.cleaned_data
-    #     if cd['new_password1'] != cd['new_password2']:
-    #         raise forms.ValidationError('Passwords do not match.')
-    #     return cd['new_password2']
+    def clean_password2(self):  # to ensure the two passwords are equal
+        cd = self.cleaned_data
+        if cd['new_password1'] != cd['new_password2']:
+            raise forms.ValidationError('Passwords do not match.')
+        return cd['new_password2']
 
 
 class PwdResetForm(PasswordResetForm):
@@ -59,13 +59,13 @@ class PwdResetForm(PasswordResetForm):
     email = forms.EmailField(max_length=254, widget=forms.EmailInput(
         attrs={'placeholder': 'Enter email', 'id': 'email', 'name': 'email'}))
 
-    # def clean_emailr(self):
-    #     emailr = self.cleaned_data['email']
-    #     test = User.objects.filter(email=emailr)
-    #     if not test:
-    #         raise forms.ValidationError(
-    #             'Unfortunately, email address is not recognized')  # you might do something more secure than this because this will give some people the knowledge of emails that exist or not in database
-    #     return emailr
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        test = User.objects.filter(email=email)
+        if not test:
+            raise forms.ValidationError(
+                'Unfortunately, email address is not recognized')  # you might do something more secure than this because this will give some people the knowledge of emails that exist or not in database
+        return email
 
 
 class RegistrationForm(forms.ModelForm):
