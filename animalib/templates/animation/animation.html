@@ -1,134 +1,202 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'Animatiion-Page/style.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <title>Anima95 Library</title>
-</head>
-
-<body>
-    <div class="menu-btn">
-        <i class="fas fa-bars fa-2x" onclick="myFunction()"></i>
-    </div>
-    <div id="mobile-menu">
-        <ol>
-            <li>Home</li>
-            <li>See How It Works</li>
-            <li>Dowload Library</li>
-            <li>Log Out</li>
-        </ol>
-    </div>
-    <div class="container">
-        <nav class="header">
-            <!--Experiment-->
-            <div class="dropdown">
-                <div class="select">
-                    <span class="selected"><img src="{% static 'Animatiion-Page/images/library-icon.png' %}" alt=""></span>
-                    <div class="caret"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Animation Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'animation/style.css' %}">
+        <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel">
+                <div class="logo">
+                    <img src="{% static 'animation/images/logo.png' %}" alt="">
                 </div>
-                <ol class="menu">
-                    <li class="active">Home</li>
-                    <li>See How It Works</li>
-                    <li>Dowload Library</li>
-                    <li>Log Out</li>
-                </ol>
-            </div>
-            <!--End Experiment-->
 
-            <div class="animation_options">
-                <a class="basic_animation" href="">
-                    <h3>BASIC</h3>
-                </a>
-                <a class="bounce_animation" href="">
-                    <h3>BOUNCE</H3>
-                </a>
-                <a class="fade_animation" href="">
-                    <h3>FADE</h3>
-                </a>
-                <a class="blink_animation" href="">
-                    <h3>BLINK</h3>
-                </a>
-            </div>
-
-            <div class="profile_icon">
-                <a href=""><i class="fa-solid fa-user"></i></a>
-            </div>
-        </nav>
-
-
-        <div class="body">
-            <div class="animation_options_list">
-                {% for post in posts %}
-                <ol>
-                    <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
-                    <!-- <li><a href="">Move_Down</a></li>
-                    <li><a href="">Move_Up</a></li>
-                    <li><a href="">Move_Left</a></li>
-                    <li><a href="">Move_Right</a></li> -->
-                </ol>
-                {% endfor %}
-            </div>
-            
-
-            <div class="animation_body">
-                <div class="animation_body_images">
-                    <a href=""><img src="{% static 'Animatiion-Page/images/refresh-icon.png' %}" alt=""></a>  
-                    {% if request.user.is_authenticated %}
-                    {% if fav %}
-                    <a href=""><img src="{% static 'Animatiion-Page/images/favourites-icon.png' %}" alt=""></a>
-                    {% else %}
-                    <a href=""><img src="{% static 'Animatiion-Page/images/favourites-icon.png' %}" alt=""></a>
-                    {% endif %}
-
-                    {% else %}
-                    <a href="{% url 'accounts:register' %}"><img src="{% static 'Animatiion-Page/images/favourites-icon.png' %}" alt=""></a>
-                    
-                    <a href=""><img src="{% static 'Animatiion-Page/images/notes-icon.png' %}" alt=""></a>
-
-                    {% endif %} 
-                    
-                    <!-- End of Authentication if Statement -->
+                <div class="animation_options">
+                    <div class="upOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="moveUp()">MOVE_UP</span>    
+                    </div>
+                    <div class="downOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="moveDown()">MOVE_DOWN</span>    
+                    </div>
+                    <div class="leftOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="moveLeft()">MOVE_LEFT</span>    
+                    </div>
+                    <div class="rightOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="moveRight()">APPEAR_FROM_RIGHT</span>    
+                    </div>
+                    <div class="bounceOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="bounce()">BOUNCE</span>    
+                    </div>
+                    <div class="rotateOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="rotate()">ROTATE</span>    
+                    </div>
+                    <div class="blinkOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="blink()">BLINK</span>    
+                    </div>
+                    <div class="trembleOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span onclick="tremble()">TREMBLE</span>    
+                    </div>
+                    <div class="fadeOption">
+                        <span >
+                            <i class="fa-regular fa-star" id="icon"></i>
+                        </span>
+                        <span  onclick="fade()">FADE</span>    
+                    </div>
                 </div>
-                <div class="animation">
-                    <h1>Anima95</h1>
-                </div>
-                <div class="animation_download">
-                    <a href="">
-                        <button class="anima_button">
-                            Download Library
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </a>
+
+                <div class="options">
+                    <div class="editText">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        <a href="" onclick="editText()">EDIT TEXT</a>
+                    </div>
+                    <div class="favouritestab">
+                        <i class="fa-solid fa-star"></i>
+                        <a href="" class="fav1">FAVOURITES</a>
+                    </div>
+                    <div class="userNotes">
+                        <i class="fa-regular fa-note-sticky"></i>
+                        <a onclick="userNotes()" href="">USER NOTES</a>
+                    </div>
+                    <div class="viewCode">
+                        <i class="fa-solid fa-code"></i>
+                        <a onclick="viewCode()" href="">VIEW CODE</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="animation_code">
-                <i class="fa-solid fa-xmark fa-2x"></i>
-                <h2>CSS Code</h2>
-                <p>
-                    Lorem ipsum, dolor sit amet
-                    consectetur adipisicing elit.
-                    Labore ipsam commodi quae vitae
-                    beatae sapiente veniam. Corrupti
-                    nisi eligendi necessitatibus voluptatem
-                    repudiandae, alias, quisquam nemo
-                    similique atque maiores labore facilis.
-                </p>
+            <div class="body">
+                <div class="unauth_tab">
+                    <div class="menu">
+                        <ol class="menu_ol">
+                          <li class="closed"><i class="fas fa-close close"></i></li>
+                          <li> <a href="{% url 'animation:homepage' %}"> Home </a></li>
+                          <li><a href="{% url 'animation:documentation' %}">Documentation</a></li>
+                          <li class="present-page"><a href="{% url 'animation:animation' %}">Animation</a></li>
+                          <li><a href="">Download Library</a></li>
+                          <li class="to-be-rem"><a href="{% url 'login' %}">Log In</a></li>
+                          <li class="to-be-rem"><a href="{% url 'accounts:register' %}">Sign Up</a></li>
+                          
+                        </ol>
+                    </div>
+                    <div class="menu_bars">
+                      <i class="fas fa-bars "></i>
+                    </div>
+                    <div class="profile">
+                            <div>
+                                <button> Log In</button>
+                            </div>
+                            <div>
+                                <button>Sign Up</button>
+                            </div>
+                    </div>
+                </div>
+                <!--
+                  <div class="auth_tab">
+                    <div class="menu">
+                        <ol class="menu_ol">
+                            <li><a href="{% url 'animation:homepage' %}">Home</a></li>
+                            <li><a href="{% url 'animation:documentation' %}">Documentation</a></li>
+                            <li><a href="{% url 'animation:animation' %}">Animation</a></li>
+                            <li><a href="">Download Library</a></li>
+                        </ol>
+                    </div>
+                    <div id="menu_bars">
+                      <i class="fas fa-bars fa-2x"></i>
+                    </div>
+                  <div class="profile_container">
+                    <div class="profile_main_container">
+                      <p class="profile_displayname_abbr">AO</p>
+                    </div>
+                    <span class="fa fa-angle-down profile_icon"></span>
+                    <div class="profile_dropdown_container">
+                      <div class="top_part">
+                        <img src="{% static 'animation/images/close-circle.png' %}" class="circle_closed" alt="">
+                        <div class="user_profile">
+                          <p class="profile_displayname">AO</p>
+                          <p class="profile_fullname">Adetutu Olufunke</p>
+                          <p class="profile_email">adefunke01@gmail.com</p>
+                        </div>
+                      </div>
+                      <div class="profile_nav">
+                        <p class="profile_item"><img src="{% static 'animation/images/lock.png' %}" class="profile_items_icon">Change password</p>
+                        <p class="profile_item"><img src="{% static 'animation/images/ph_note-blank.png' %}" class="profile_items_icon">Notes</p>
+                        <p class="profile_item"><img src="{% static 'animation/images/material-symbols_replay-rounded.png' %}" class="profile_items_icon">Favourites
+                        </p>
+                        <p class="profile_item"><img src="{% static 'animation/images/logout.png' %}" class="profile_items_icon">Log out</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                -->
+                
+                
+                <!-- <div class="animation_body">
+                  <div class="element_options">
+                    <label for="elements">CHOOSE ANIMATION OPTION:</label>
+                    <select name="elements" id="element_selector">
+                      <option name="text" value="text">Text <i class="fa-solid fa-font"></i></option>
+                      <option name="circle" value="circle">Circle <i class="fa-solid fa-circle"></i></option>
+                      <option name="square" value="square">Square <i class="fa-solid fa-square"></i></option>
+                    </select>
+                  </div>
+                  <div>
+                    <p class="element-animated etext" id="element">Anima95</p>
+                    <div class="element-animated circle" id="element" style="padding: 150px 150px; background-color: black; border-radius: 100%;"></div>
+                    <div class="element-animated square" id="element" style="padding: 150px 150px; background-color: black;"></div>
+                </div>
+                </div> -->
+                
+                <!-- to be removed once the select option starts working -->
+                  <div class="animation_body">
+                    <div class="element_options">
+                        <i class="fa-solid fa-font selected anime-option1"></i>
+                        <i class="fa-solid fa-circle anime-option2"></i>
+                        <i class="fa-solid fa-square anime-option3"></i>
+                    </div>
+                    <div>
+                        <p class="element-animated etext" id="element">Anima95</p>
+                        <div class="element-animated circle" id="element" style=" background-color: black; border-radius: 100%; "></div>
+                        <div class="element-animated square" id="element" style=" background-color: black; ;"></div>
+                    </div>
+                </div>
+               
             </div>
         </div>
-    </div>
+        
+        <script src="{% static 'animation/script.js' %}">
 
-
-
-    <script src="{% static 'Animatiion-Page/script.js' %}"></script>
-</body>
-
+        </script>
+    </body>
 </html>
