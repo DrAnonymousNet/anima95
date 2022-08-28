@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Activation Invalid</title>
+    <link rel="stylesheet" href="{% static 'reset-password/reset.css' %}" />
+    <script src="https://code.iconify.design/iconify-icon/1.0.0-beta.2/iconify-icon.min.js"></script>
+  </head>
+  <body>
+    <div class="prompt">
+      <img
+        src="{% static 'reset-password/Shining cube.png' %}"
+        alt="Shining cube image"
+        class="cube"
+        id="cube"
+      />
+      <div class="content">
+        <img src="{% static 'reset-password/error.PNG' %}" alt="Invalid icon" id="icon" class="error" />
+        <p class="text">
+          The Activation of your account was Invalid, possibly because the link
+          sent to your email has already been used
+        </p>
+      </div>
+      <img src="{% static 'reset-password/Ellipse.png' %}" alt="Ellipse image" class="ellipse" />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'Animatiion-Page/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <title>Anima95 Library</title>
+</head>
+
+<body>
+    <div class="menu-btn">
+        <i class="fas fa-bars fa-2x" onclick="myFunction()"></i>
+    </div>
+    <div id="mobile-menu">
+        <ol>
+            <li>Home</li>
+            <li>See How It Works</li>
+            <li>Dowload Library</li>
+            <li>Log Out</li>
+        </ol>
+    </div>
+    <div class="container">
+        <nav class="header">
+            <!--Experiment-->
+            <div class="dropdown">
+                <div class="select">
+                    <span class="selected"><img src="{% static 'Animatiion-Page/images/library-icon.png' %}" alt=""></span>
+                    <div class="caret"></div>
+                </div>
+                <ol class="menu">
+                    <li class="active">Home</li>
+                    <li>See How It Works</li>
+                    <li>Dowload Library</li>
+                    <li>Log Out</li>
+                </ol>
+            </div>
+            <!--End Experiment-->
+
+            <div class="animation_options">
+                <a class="basic_animation" href="">
+                    <h3>BASIC</h3>
+                </a>
+                <a class="bounce_animation" href="">
+                    <h3>BOUNCE</H3>
+                </a>
+                <a class="fade_animation" href="">
+                    <h3>FADE</h3>
+                </a>
+                <a class="blink_animation" href="">
+                    <h3>BLINK</h3>
+                </a>
+            </div>
+
+            <div class="profile_icon">
+                <a href=""><i class="fa-solid fa-user"></i></a>
+            </div>
+        </nav>
+
+
+        <div class="body">
+            <div class="animation_options_list">
+                {% for post in posts %}
+                <ol>
+                    <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+                    <!-- <li><a href="">Move_Down</a></li>
+                    <li><a href="">Move_Up</a></li>
+                    <li><a href="">Move_Left</a></li>
+                    <li><a href="">Move_Right</a></li> -->
+                </ol>
+                {% endfor %}
+            </div>
+            
+
+            <div class="animation_body">
+                <div class="animation_body_images">
+                    <a href=""><img src="{% static 'Animatiion-Page/images/refresh-icon.png' %}" alt=""></a>  
+                    {% if request.user.is_authenticated %}
+                    {% if fav %}
+                    <a href=""><img src="{% static 'Animatiion-Page/images/favourites-icon.png' %}" alt=""></a>
+                    {% else %}
+                    <a href=""><img src="{% static 'Animatiion-Page/images/favourites-icon.png' %}" alt=""></a>
+                    {% endif %}
+
+                    {% else %}
+                    <a href="{% url 'accounts:register' %}"><img src="{% static 'Animatiion-Page/images/favourites-icon.png' %}" alt=""></a>
+                    
+                    <a href=""><img src="{% static 'Animatiion-Page/images/notes-icon.png' %}" alt=""></a>
+
+                    {% endif %} 
+                    
+                    <!-- End of Authentication if Statement -->
+                </div>
+                <div class="animation">
+                    <h1>Anima95</h1>
+                </div>
+                <div class="animation_download">
+                    <a href="">
+                        <button class="anima_button">
+                            Download Library
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="animation_code">
+                <i class="fa-solid fa-xmark fa-2x"></i>
+                <h2>CSS Code</h2>
+                <p>
+                    Lorem ipsum, dolor sit amet
+                    consectetur adipisicing elit.
+                    Labore ipsam commodi quae vitae
+                    beatae sapiente veniam. Corrupti
+                    nisi eligendi necessitatibus voluptatem
+                    repudiandae, alias, quisquam nemo
+                    similique atque maiores labore facilis.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="{% static 'Animatiion-Page/script.js' %}"></script>
+</body>
+
+</html>
