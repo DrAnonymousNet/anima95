@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'homepage/document.css' %}">
+    <script src="https://use.fontawesome.com/54051d8ba2.js"></script>
+    <title>Documentation Page</title>
+</head>
+<body>
+    
+    <header class="main_header">
+        <!-- <nav class="nav_container unauthenticated">
+                <ul class="inside_nav_container">
+                    <li ><h2 class="website_name ">Ani<span class="lightbulb"></span>ma 95</h2></li>
+                    <li class="nav_icon"><span class="fa fa-navicon mobile_navicon"></span> </li>
+                    <li class="main_nav one">
+                        <ul class="inside_main_nav">
+                            <li class="play"><span class="fa fa-caret-up "></span></li>
+                            <li class="nav_item"> <a href="{% url 'animation' %}" style="text-decoration: none;"> Home </a></li>
+                            <hr class="nav_hr">
+                            <li class="nav_item"> <a href="{% url 'animation:documentation' %}" style="text-decoration: none;"> Documentation </a></li>
+                            <hr class="nav_hr">
+                            <li class="nav_item"> <a href="{% url 'animation:animation' %}" style="text-decoration: none;"> Animation </a></li>
+                            <hr class="nav_hr">
+                            <li class="nav_item">Download Library</li>
+                            <hr class="nav_hr">
+                            <li class="nav_item login"> <a href="{% url 'login' %}" style="text-decoration: none;"> Log In </a></li>
+                            <hr class="nav_hr">
+                            <li class="nav_item desktop_signup"> <a href="{% url 'accounts:register' %}" style="text-decoration: none;"> Sign Up </a></li>
+                        </ul>
+                    </li>
+                    <li class="main_nav two">
+                        <ul class="inside_main_nav wat">
+                            <li class="nav_item_doc close"><img class="nav_item_doc_img1" src="{% static 'homepage/document image/Vector.png' %}" alt=""></li>
+                        
+                            <li class="nav_item_doc"> <img class="nav_item_doc_img" src="{% static 'homepage/document image/ci_download.png' %}" alt=""> Download Library</li>
+                        
+                            <li class="nav_item_doc login"> <img class="nav_item_doc_img" src="{% static 'homepage/document image/bi_person-plus.png' %}" alt=""> Log In</li>
+                        
+                            <li class="nav_item_doc desktop_signup"> <img class="nav_item_doc_img" src="{% static 'homepage/document image/eva_log-in-fill.png' %}" alt=""> Sign Up</li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav> -->
+    
+    
+    
+        <!-- Authenticated User -->
+        <nav class="nav_container authenticated">
+            <ul class="inside_nav_container">
+                <li class="website_name_container">
+                    <h2 class="website_name ">Ani<span class="lightbulb"></span>ma 95</h2>
+                </li>
+                <li class="profile_container">
+                    <div class="profile_main_container">
+                        <p class="profile_displayname_abbr">AO</p>
+                    </div>
+                    <span class="fa fa-angle-down profile_icon"></span>
+                    <div class="profile_dropdown_container">
+                        <div class="top_part">
+                            <img src="{% static 'homepage/image/close-circle.png' %}" class="circle_closed" alt="">
+                            <div class="user_profile">
+                                <p class="profile_displayname">AO</p>
+                                <p class="profile_fullname">Adetutu Olufunke</p>
+                                <p class="profile_email">adefunke01@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="profile_nav">
+                            <p class="profile_item"><img src="{% static 'homepage/image/lock.png' %}" class="profile_items_icon">Change password
+                            </p>
+                            <p class="profile_item"><img src="{% static 'homepage/image/ph_note-blank.png' %}" class="profile_items_icon">Notes
+                            </p>
+                            <p class="profile_item"><img src="{% static 'homepage/image/material-symbols_replay-rounded.png' %}"
+                                    class="profile_items_icon">Favourites</p>
+                            <p class="profile_item"><img src="{% static 'homepage/image/logout.png' %}" class="profile_items_icon">Log out</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav_icon"><span class="fa fa-navicon mobile_navicon"></span> </li>
+                <li class="main_nav one main_nav_auth">
+                    <ul class="inside_main_nav">
+                        <li class="play"><span class="fa fa-caret-up "></span></li>
+                        <li class="nav_item"> <a href="{% url 'animation' %}" style="text-decoration: none;"> Home </a></li>
+                        <hr class="nav_hr">
+                        <li class="nav_item"> <a href="{% url 'animation:documentation' %}" style="text-decoration: none;"> Documentation </a></li>
+                        <hr class="nav_hr">
+                        <li class="nav_item"> <a href="{% url 'animation:animation' %}" style="text-decoration: none;"> Animation </a></li>
+                        <hr class="nav_hr">
+                        <li class="nav_item">Download Library</li>
+                        <hr class="nav_hr">
+                        <li class="nav_item login auth"> <a href="{% url 'login' %}" style="text-decoration: none;"> Log In </a></li>
+                        <hr class="nav_hr">
+                        <li class="nav_item desktop_signup auth"> <a href="{% url 'accounts:register' %}" style="text-decoration: none;"> Sign Up </a></li>
+                    </ul>
+                </li>
+                <li class="main_nav two">
+                    <ul class="inside_main_nav wat">
+                        <li class="nav_item_doc close"><img class="nav_item_doc_img1" src="{% static 'homepage/document image/Vector.png' %}" alt=""></li>
+                
+                        <li class="nav_item_doc"> <img class="nav_item_doc_img" src="{% static 'homepage/document image/ci_download.png' %}" alt=""> Download
+                            Library</li>
+                
+                        <li class="nav_item_doc login"> <img class="nav_item_doc_img" src="{% static 'homepage/document image/bi_person-plus.png' %}" alt="">
+                            Log In</li>
+                
+                        <li class="nav_item_doc desktop_signup"> <img class="nav_item_doc_img"
+                                src="{% static 'homepage/document image/eva_log-in-fill.png' %}" alt=""> Sign Up</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="document-header-container">
+            <h1 class="document-header">See how to make the best use of our library</h1>
+            <div class="document-header-img-container">
+                <img class="document-header-img" src="{% static 'homepage/document image/Frame 2565.png' %}" alt="">
+            </div>
+            <button class="document-header-explore-btn">Explore More <span class="fa fa-long-arrow-right"></span></button>
+        </div>
+    </header>
+    <main>
+        <div class="doc-content1-container">
+            <h2 class="doc-content1-header">About our library</h2>
+            <p class="doc-content1-describe">Anima 95 allows you add animations to elements on your project without having to get your hands dirty with codes,
+            bringing your projects to life with awesome animations.</p>
+            <div class="doc-content1-img"></div>
+            <p class="doc-content1-describe2">Our library gives you unlimited access to a variety of awesome animation effects and it basically comprises a simple,
+            lightweight CSS Library built using <span class="sas">SAS</span>.
+            <br>
+            <br>
+            Anima 95 helps you save time and speed up your project development game. As browsers don't understand raw SASS files
+            like they understand CSS, linking them to your HTML file like you would normally do with your CSS file won't yield
+            results.
+            <br>
+            <br>
+            So we compiled our SASS files into a CSS file for the animations to work in any browser of your choice, using a task
+            runner called Gulp and the installation of node.js - node package manager used to install Gulp and some plugins into our
+            project.
+            </p>
+        </div>
+        <div class="doc-content2-container">
+            <h2 class="doc-content2-header">How to use library</h2>
+            <p class="doc-content2-describe1">As said earlier, we compiled the SASS files to a CSS file for easy implementation onto your HTML files because
+            simplicity is the core objective behind our product.
+            <br>
+            Here's a step by step guide to use our animation library, regardless of you being a novice, advanced beginner,
+            competent, proficient, or expert Developer. Trust us when we say it's as simple as ABC.</p>
+            <hr>
+            <p class="doc-content2-describe2"> <img class="doc-content2-describe2-icon" src="{% static 'homepage/document image/Group.png' %}" alt=""> Go to our <span class="sas">Animation Page</span>, click on the download button to download the library into your computer.</p>
+                <hr>
+            
+            <p class="doc-content2-describe2"><img class="doc-content2-describe2-icon" src="{% static 'homepage/document image/Group.png' %}" alt=""> Unzip the downloaded zip file and navigate to the folder that contains the HTML file.</p>
+                
+                <hr>
+                
+            <p class="doc-content2-describe2 reduce-pad"><img class="doc-content2-describe2-icon" src="{% static 'homepage/document image/Group.png' %}" alt=""> Include the snippet of code below in the head section of your Html file - this is to
+                link our animation library to your file.</p>
+                <div class="doc-content2-embed" >
+                    <p class="html_code">
+                        
+                           <span style=" color: #876AC4;"> &lt; link</span> rel=&quot;stylesheet&quot; href=&quot;animate.css&quot; <span style=" color: #876AC4;">&gt;</span>
+                    </p>
+
+                </div>
+                
+                <hr>
+                
+                <p class="doc-content2-describe2"><img class="doc-content2-describe2-icon" src="{% static 'homepage/document image/Group.png' %}" alt="">Go to the element that you want to animate and use the class attribute to get it animated.</p>
+                
+                <hr>
+                
+                <p class="doc-content2-describe2 reduce-pad"><img class="doc-content2-describe2-icon" src="{% static 'homepage/document image/Group.png' %}" alt="">You will be adding two classes, one is the general class ("animated_element") and the second class is the keyword that
+                is specific to the animation you desire. For example, "bounce", "move_up", "move_down", etc. The code snippet below is
+                an
+                example.
+            </p>
+            <div class="doc-content2-embed">
+                 <p class="html_code">
+                    <span style=" color: #876AC4;">&lt;div</span> class=&quot;animated element bounce&quot;&gt; to be completed by devs <span style=" color: #876AC4;"> &lt;/div&gt;</span>
+                 </p>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </main>
+        <footer>
+            <div class="footer_header">
+                <h2 class="website_name ">Ani<span class="lightbulb"></span>ma 95</h2>
+            </div>
+            <div class="footer_container">
+                <div class="footer_contact">
+                    <img class="contact_image" src="{% static 'homepage/image/freepik--group--inject-18.png' %}" alt="">
+                    <p class="contact_us">Contact Us</p>
+                </div>
+                <div class="footer_documentation">
+                    <img src="{% static 'homepage/image/Frame 74.png' %}" alt="" class="documentation_image">
+                    <p class="animate_head">Animations</p>
+                    <p class="animate">Move_up</p>
+                    <p class="animate">Move_down</p>
+                    <p class="animate">Bounce</p>
+                    <p class="animate">Blink</p>
+                    <p class="animate">Move_left</p>
+                    <p class="animate">Fade</p>
+                    <p class="animate">Appear_from_right</p>
+                    <p class="animate">Tremble</p>
+                    <p class="animate">Rotate</p>
+                </div>
+            </div>
+            <div class="footer_phone_nav">
+                <ul class="footer_main_phone_nav">
+                    <li class="footer_nav_item"><a href="{% url 'login' %}" style="text-decoration: none;"> Log In </a></li>
+                    <li class="footer_nav_item"> <a href="{% url 'accounts:register' %}" style="text-decoration: none;"> Sign Up </a></li>
+                    <li class="footer_nav_item"> <a href="{% url 'animation:documentation' %}" style="text-decoration: none;"> Documentation </a></li>
+                    <li class="footer_nav_item">Download Library</li>
+                </ul>
+            </div>
+            <div class="social_icon_container">
+                <span class="social_icon fa fa-facebook-square"></span>
+                <span class="social_icon fa fa-twitter"></span>
+                <span class="social_icon fa fa-linkedin-square"></span>
+                <span class="social_icon fa fa-youtube-play"></span>
+            </div>
+            <div class="copyright_container">
+                <p class="copyright_statement">@ 2022 Anima 95. All Rights Reserved</p>
+                <div class="footer_other_nav">
+                    <ul class="footer_main_other_nav">
+                        <li class="footer_nav_item"> <a href="{% url 'login' %}" style="text-decoration: none;"> Log In </a></li>
+                        <li class="footer_nav_item"> <a href="{% url 'accounts:register' %}" style="text-decoration: none;"> Sign Up </a></li>
+                        <li class="footer_nav_item"> <a href="{% url 'animation:documentation' %}" style="text-decoration: none;"> Documentation </a></li>
+                        <li class="footer_nav_item">Download Library</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <script src="{% static 'homepage/document.js' %}"></script>
+</body>
+</html>

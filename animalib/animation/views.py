@@ -3,13 +3,19 @@ from .models import Post
 
 # Create your views here.
 
+
 def home(request):
-    return render (request, 'animation/index.html')
+    return render(request, 'animation/index.html')
+
 
 def animation(request):
     all_posts = Post.newmanager.all()
 
-    return render(request, 'animation/animation.html', {'posts' : all_posts})
+    return render(request, 'animation/animation.html', {'posts': all_posts})
+
+
+def documentation(request):
+    return render(request, 'animation/documentation.html')
 
 
 def logout(request):

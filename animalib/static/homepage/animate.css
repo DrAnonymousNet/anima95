@@ -1,0 +1,118 @@
+.element-animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+@keyframes tremble {
+    60%,
+    62%,
+    64%,
+    66%,
+    68%,
+    70%,
+    72%,
+    74%,
+    76%,
+    78%,
+    80%,
+    82%,
+    84%,
+    86%,
+    88%,
+    90%,
+    92%,
+    94%,
+    96%,
+    98%,
+    100% {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+
+    61%,
+    63%,
+    65%,
+    67%,
+    69%,
+    71%,
+    73%,
+    75%,
+    77%,
+    79%,
+    81%,
+    83%,
+    85%,
+    87%,
+    89%,
+    97%,
+    99%,
+    91%,
+    93%,
+    95% {
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    0%,
+    20%,
+    40%,
+    10%,
+    30%,
+    50% {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+}
+
+.tremble {
+    -webkit-animation-name: tremble;
+    animation-name: tremble;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-duration: 6s;
+    -webkit-animation-duration: 6s;
+
+    animation-iteration-count: infinite;
+}
+@keyframes bounce {
+    0% {
+        transform: translateY(20px) scale(1.1) scaleY(0.9);
+    }
+
+    100% {
+        transform: translateY(-50px) scale(1, 1);
+    }
+    30% {
+        transform: translateY(0px) scale(1) scaleY(1);
+    }
+}
+@keyframes bounce-LG {
+    0% {
+        transform: translateY(50px) scale(1.1) scaleY(0.9);
+    }
+    30%{
+    transform: translateY(0px) scale(1) scaleY(1);
+    }
+
+    100% {
+        transform: translateY(-100px) scale(1, 1);
+    }
+}
+
+.rotate {
+    -webkit-animation-name: rotate;
+    animation-name: rotate;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+}
+@keyframes rotate {
+    0% {
+        -webkit-transform: rotate(-1turn);
+        transform: rotate(-1turn);
+    }
+
+    100% {
+        -webkit-transform: none;
+        transform: none;
+    }
+}
