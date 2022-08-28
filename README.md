@@ -1,2 +1,2 @@
 # anima95
-An animation Library Website for Budding Developers 
+An Animation Library Website for Budding Developers 
