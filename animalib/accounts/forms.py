@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordChangeForm, SetPasswordForm
-
+from django.contrib.auth import authenticate
 
 class PwdResetConfirmForm(SetPasswordForm):
     new_password1 = forms.CharField(
@@ -19,10 +19,10 @@ class PwdResetConfirmForm(SetPasswordForm):
         return cd['new_password2']
 
 
-class UserLoginForm(AuthenticationForm):
-
-    username = forms.EmailField(widget=forms.EmailInput(
-        attrs={'placeholder': 'johndoe@gmail.com', 'id': 'email'}))
+class UserLoginForm(forms.Form):
+    username = forms.CharField()
+    #email = forms.EmailField(widget=forms.EmailInput(
+    #    attrs={'placeholder': 'johndoe@gmail.com', 'id': 'email'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'placeholder': '********',
@@ -30,6 +30,34 @@ class UserLoginForm(AuthenticationForm):
         }
     ))
 
+    def clean_username(self):
+        super(UserLoginForm, self).clean()
+        username = self.cleaned_data.get('username')
+        user = User.objects.filter(username=username).first()
+
+        if username is None:
+            self._errors['username'] = self.error_class([
+                'username is required'])
+        print(user)
+
+        return username
+
+    def clean(self, *args, **kwargs):
+        
+        username = self.cleaned_data.get("username")
+        password = self.cleaned_data.get("password")
+
+        print(username, password)
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            print(user ,"kofpokffk3p")
+            if not user:
+                raise forms.ValidationError("This user does not exist")
+            if not user.check_password(password):
+                raise forms.ValidationError({password: "Incorrect password"})
+
+        return super(UserLoginForm, self).clean(*args, **kwargs)
 
 class PwdChangeForm(PasswordChangeForm):
     old_password = forms.CharField(widget=forms.PasswordInput(
@@ -84,7 +112,7 @@ class RegistrationForm(forms.ModelForm):
 
     # method to check if username already exists in database, not necessary if your username in Login Page will be an Emailfield
     def clean_username(self):
-        username = self.cleaned_data['username'].lower()
+        username = self.cleaned_data['username']
         r = User.objects.filter(username=username)
         if r.count():
             raise ValidationError("Username already exists")
