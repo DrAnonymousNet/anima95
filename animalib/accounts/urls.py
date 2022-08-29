@@ -20,3 +20,4 @@ urlpatterns = [
          views.activate, name='activate'),
     # path('register/email_notification/', views.email, name='email'),
 ]
+
