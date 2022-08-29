@@ -10,7 +10,11 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponse
-
+from django.views import View
+from django.contrib.auth import authenticate, login
+from .forms import UserLoginForm
+from django.contrib import messages
+from django.conf import settings
 # I added these due to my issues with getting email
 # from django.core.mail import EmailMessage
 # from django.conf import settings
@@ -22,11 +26,13 @@ from django.http import HttpResponse
 def accounts_register(request):
     if request.method == 'POST':
         registerForm = RegistrationForm(request.POST)
+        print(registerForm.errors)
+        print(request.POST)
         if registerForm.is_valid():
             user = registerForm.save(commit=False)
             user.email = registerForm.cleaned_data['email']
             user.set_password(registerForm.cleaned_data['password'])
-            user.is_active = False
+            user.is_active = True
             user.save()
             # configure and set up email to be sent
             current_site = get_current_site(request)
@@ -44,7 +50,7 @@ def accounts_register(request):
             #                 to=[user.email])
             # email.send()
             # return HttpResponse('registered succesfully and activation sent') # could be linked to a template for users to access as Activation Success page. Try this instead if it will work return render(request, 'registration/nameoftemplate.html'), nameoftemplate could be check_activation_email
-            return redirect('email_notification/')
+            return redirect('login')
     else:
         registerForm = RegistrationForm()
     return render(request, 'registration/register.html', {'form': registerForm})
@@ -68,3 +74,40 @@ def activate(request, uidb64, token):
 
 # def email(request):
 #     return render(request, 'registration/email_notification.html')
+
+
+
+
+class LoginView(View):
+
+    def get(self, request):
+        template = 'registration/login.html'
+        login_form = UserLoginForm()
+        context = {
+            'form': login_form,
+        }
+        return render(request, template_name=template, context=context)
+
+    def post(self, request):
+        login_form = UserLoginForm(request.POST)
+        print(login_form.errors, request.POST)
+        if login_form.is_valid():
+            print(request.POST)
+            username = login_form.cleaned_data['username']
+            password = login_form.cleaned_data['password']
+            print(username, password)
+            auth_user = authenticate(username=username, password=password)
+            print(auth_user)
+            if auth_user:
+                print(auth_user)
+                login(request, auth_user)   
+                return redirect('animation:animation')
+            return redirect(request.META.get('HTTP_REFERER'))
+
+          
+        #else:
+        #    if login_form.errors:
+        #        for field in login_form:
+        #            for error in field.errors:
+        #                messages.add_message(request, messages.ERROR, error)
+        return redirect(request.META.get('HTTP_REFERER'))
